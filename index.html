@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Selamat Ulang Tahun ke-20, Prita! 🎉</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-start:#ff7aa2;
+      --bg-end:#ffd1dc;
+      --card:#ffffffcc;
+      --text:#2a2a2a;
+      --accent:#ff5c8a;
+      --accent-2:#6c5ce7;
+      --gold:#ffb703;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Poppins", sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 800px at 70% -10%, #ffffff40, transparent 60%),
+                  linear-gradient(135deg, var(--bg-start), var(--bg-end));
+      overflow-x:hidden;
+    }
+    .balloons{position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:1;}
+    .balloon{position:absolute; bottom:-15vh; width:48px; height:60px; border-radius:50% 50% 45% 45%; background: radial-gradient(circle at 30% 30%, #fff6, transparent 40%), var(--accent); box-shadow:0 12px 30px #00000022; animation: floatUp 16s linear infinite;}
+    .balloon:after{content:""; position:absolute; left:50%; top:60px; width:2px; height:80px; background:#ffffff66; transform:translateX(-50%);}
+    .balloon.b2{background: radial-gradient(circle at 30% 30%, #fff6, transparent 40%), var(--accent-2)}
+    .balloon.b3{background: radial-gradient(circle at 30% 30%, #fff6, transparent 40%), #00c2ff}
+    .balloon.b4{background: radial-gradient(circle at 30% 30%, #fff6, transparent 40%), #00d18f}
+    @keyframes floatUp{0%{transform:translateY(0) translateX(0) rotate(2deg); opacity:.8}50%{transform:translateY(-55vh) translateX(20px) rotate(-2deg); opacity:1}100%{transform:translateY(-110vh) translateX(-10px) rotate(2deg); opacity:.9}}
+    .container{position:relative; z-index:2; min-height:100vh; display:grid; place-items:center; padding:24px;}
+    .card{width:min(920px, 92vw); background:var(--card); backdrop-filter: blur(10px); border:1px solid #ffffff77; border-radius:28px; box-shadow:0 20px 60px #00000025; padding:clamp(20px, 4vw, 40px); text-align:center;}
+    .title{display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;}
+    .age-badge{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:white; font-weight:700; font-size:clamp(18px, 4vw, 22px); padding:10px 16px; border-radius:999px; box-shadow:0 10px 30px #0000002a;}
+    h1{margin:0; font-size:clamp(28px, 6vw, 48px); line-height:1.1;}
+    p.lead{font-size:clamp(16px, 3.5vw, 20px); line-height:1.8; margin:16px 0 0 0;}
+    .grid{display:grid; gap:16px; margin-top:22px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));}
+    .quote, .wish{background:#ffffffcc; border:1px dashed #0000001a; border-radius:16px; padding:16px;}
+    .quote .mark{font-size:28px; color:var(--accent)}
+    footer{text-align:center; margin-top:26px; font-size:13px; opacity:.75}
+    canvas#confetti{position:fixed; inset:0; pointer-events:none; z-index:3}
+  </style>
+</head>
+<body>
+  <div class="balloons" aria-hidden="true">
+    <div class="balloon" style="left:5%; animation-delay:-2s; animation-duration:18s"></div>
+    <div class="balloon b2" style="left:18%; animation-delay:-7s; animation-duration:20s"></div>
+    <div class="balloon b3" style="left:35%; animation-delay:-11s; animation-duration:17s"></div>
+    <div class="balloon b4" style="left:52%; animation-delay:-4s; animation-duration:19s"></div>
+    <div class="balloon" style="left:68%; animation-delay:-9s; animation-duration:21s"></div>
+    <div class="balloon b2" style="left:82%; animation-delay:-5s; animation-duration:18s"></div>
+    <div class="balloon b3" style="left:92%; animation-delay:-13s; animation-duration:22s"></div>
+  </div>
+  <canvas id="confetti" aria-hidden="true"></canvas>
+  <main class="container">
+    <section class="card" role="region" aria-label="Kartu ucapan untuk Prita">
+      <div class="title">
+        <span class="age-badge">20 ✨</span>
+        <h1>Selamat Ulang Tahun, Prita! 🎂🎉</h1>
+      </div>
+      <p class="lead">Hari ini spesial, karena <strong>kamu</strong> lebih berkilau dari sebelumnya. Semoga usia ke-20 membawa keberanian baru, mimpi yang makin tinggi, dan kebahagiaan yang tak henti-henti. Kamu pantas dapat semua hal baik, Prita!</p>
+      <div class="cta">
+        <button class="btn" id="btnConfetti">Lepaskan Konfeti 🎊</button>
+        <button class="btn" id="btnSurprise">Buka Kado 🎁</button>
+      </div>
+      <div class="grid">
+        <div class="quote">
+          <div class="mark">“</div>
+          <p>Di usia 20, dunia mungkin terasa luas — tapi langkahmu juga besar. Terus melangkah, pelan tapi pasti. 🌈</p>
+        </div>
+        <div class="wish">
+          <strong>Doa untuk Prita:</strong>
+          <ul style="margin:10px 0 0 18px; padding:0">
+            <li>Kesehatan yang kuat dan hati yang tenang</li>
+            <li>Lingkar pertemanan yang hangat dan suportif</li>
+            <li>Kesempatan baik yang datang bertubi-tubi</li>
+            <li>Harapan yang tumbuh lebih nyata setiap hari</li>
+          </ul>
+        </div>
+      </div>
+      <footer>Dibuat dengan penuh sayang untuk Prita • Selamat ulang tahun ke-20 💖</footer>
+    </section>
+  </main>
+  <script>
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let W, H, confetti = [], rafId;
+    function resize(){W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight;}
+    window.addEventListener('resize', resize); resize();
+    function makePiece(x, y){const colors = ['#ff5c8a','#6c5ce7','#00c2ff','#00d18f','#ffb703'];return {x, y,w: Math.random()*8+4,h: Math.random()*12+6,r: Math.random()*Math.PI,rv: (Math.random()*0.2-0.1),vx: (Math.random()-0.5)*6,vy: Math.random()*-3-4,ay: 0.15,color: colors[(Math.random()*colors.length)|0],life: 200 + (Math.random()*60|0)};}
+    function shootConfetti(n=200){const cx = W/2, cy = H*0.25;for(let i=0;i<n;i++) confetti.push(makePiece(cx, cy));if(!rafId) loop();}
+    function loop(){rafId = requestAnimationFrame(loop);ctx.clearRect(0,0,W,H);for(let i=confetti.length-1;i>=0;i--){const p = confetti[i];p.vy += p.ay; p.x += p.vx; p.y += p.vy; p.r += p.rv; p.life--;if(p.y>H+40 || p.x<-40 || p.x>W+40 || p.life<=0){ confetti.splice(i,1); continue; }ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.r);ctx.fillStyle = p.color; ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();}if(confetti.length===0){ cancelAnimationFrame(rafId); rafId = null; }}
+    document.getElementById('btnConfetti').addEventListener('click', ()=>shootConfetti(200));
+    window.addEventListener('load', ()=>shootConfetti(220));
+  </script>
+</body>
+</html>
